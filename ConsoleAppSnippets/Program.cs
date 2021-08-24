@@ -24,9 +24,10 @@ namespace ConsoleAppSnippetse
     }
 }
 
+// Use these lines of code. I commented them out here in order to store them.
 
 //1.-----------------INPUT AND OUTPUT------------------------------------
-// You can use these lines of code. I commented them out here
+
 //Console.WriteLine("Hello! Multiply two numbers with this App");
 //Console.Write("Enter the first number = ");
 //var x = Console.ReadLine();
