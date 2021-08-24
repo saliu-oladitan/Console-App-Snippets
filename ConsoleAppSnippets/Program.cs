@@ -6,18 +6,19 @@ namespace ConsoleAppSnippetse
     {
         static void Main(string[] args)
         {
-            var x = 1;
-            while (x < 11)
+            for (int y=1; y<=5; y++)
             {
-                Console.WriteLine(x);
-                x++;
+                for(int x=1; x<=10; x++)
+                {
+                    Console.WriteLine(x);
+                }
+
+                for (int x = 10; x >= 1; x--)
+                {
+                    Console.WriteLine(x);
+                }
             }
 
-            
-            for(int i=10; i>0; i--)
-            {
-                Console.WriteLine(i);
-            }
 
         }
     }
@@ -51,8 +52,7 @@ namespace ConsoleAppSnippetse
 
 
 
-//4.
-//----------------WHILE LOOPS-------------------------------------
+//4.----------------WHILE LOOPS-------------------------------------
 //var x = "";
 //while (x != "123")
 //{
@@ -67,3 +67,19 @@ namespace ConsoleAppSnippetse
 //}
 
 //Console.WriteLine("Welcome, You are authorized");
+
+
+
+//5. -----------------COUNT FROM 1 TO 10 AND BACK TO 1---------------
+//var x = 1;
+//while (x <= 10)
+//{
+//    Console.WriteLine(x);
+//    x++;
+//}
+
+
+//for (int i = 9; i > 0; i--)
+//{
+//    Console.WriteLine(i);
+//}
