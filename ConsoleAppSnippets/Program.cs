@@ -31,6 +31,7 @@ namespace ConsoleAppSnippetse
     }
 }
 
+// Use these lines of code. I commented them out here in order to store them.
 
 //8.--------------FOREACH LOOP------------------
 //var UseArray = new int[] { 1, 2, 3 };
@@ -121,24 +122,7 @@ namespace ConsoleAppSnippetse
 //}
 
 
-
-//2.-----------------CHECK THE SIZE OF A DATA TYPE (RESULT IS GIVEN IN BYTES => 1 Byte = 8 bits)----------
-
-//Console.WriteLine("The size of int is {0}", sizeof(int));
-
-
-
-//1.-----------------INPUT AND OUTPUT------------------------------------
-// You can use these lines of code. I commented them out here
-//Console.WriteLine("Hello! Multiply two numbers with this App");
-//Console.Write("Enter the first number = ");
-//var x = Console.ReadLine();
-//Console.Write("Enter the second number = ");
-//var y = Console.ReadLine();
-//var z = Convert.ToInt32(x) * Convert.ToInt32(y);
-//Console.WriteLine("The result of multiplying {0} by {1} is {2}", x, y, z);
-
-
-
-
-
+//for (int i = 9; i > 0; i--)
+//{
+//    Console.WriteLine(i);
+//}
