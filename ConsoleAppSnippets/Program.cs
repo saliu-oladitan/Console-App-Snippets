@@ -7,31 +7,84 @@ namespace ConsoleAppSnippetse
         static void Main(string[] args)
         {
             Console.WriteLine("What is your name?");
-            var name = Console.ReadLine(); 
-            
-            while (name == "")
-            {
-                Console.WriteLine("You did not type anything.");
-                Console.WriteLine("What is your name?");
-               name = Console.ReadLine();
-            }
-
+            var name= ReturnValue();
 
             Console.WriteLine("What is your age?");
-            var age = Console.ReadLine();        
-            
-            Console.WriteLine("What month were you born in?");
-            var month = Console.ReadLine();
+            var age = ReturnValue();
 
-            Console.WriteLine("Your name is: {0}", name);
-            Console.WriteLine("Your age is: {0}", age);
+            Console.WriteLine("What month were you born in?");
+            var month = ReturnValue();
+
+            Console.WriteLine("Your name is: {0} \n", name);
+            Console.WriteLine("Your age is: {0} \n", age);
             Console.WriteLine("Your birth month is: {0}", month);
 
         }
+
+            static string ReturnValue()
+        { 
+            var Question = Console.ReadLine();
+            
+            while (Question == "")
+            {
+                Console.WriteLine("You inputed empty value.\nPlease, input another value.");
+                Question = Console.ReadLine();
+            }
+            return (Question);
+        }
+
+
+
     }
 }
 
 // Use these lines of code. I commented them out here in order to store them.
+
+//10.------A FUNCTION THAT TAKES IN AND RETURNS A VALUE------------
+
+
+//9.--------------A FUNCTION THAT RETURNS A VALUE------------------
+//Console.WriteLine("What is your name?");
+//var name = Console.ReadLine();
+//while (name == "")
+//{
+//    name = CheckEmpty();
+//}
+
+
+//Console.WriteLine("What is your age?");
+//var age = Console.ReadLine();
+//while (age == "")
+//{
+//    age = CheckEmpty();
+//}
+
+//Console.WriteLine("What month were you born in?");
+//var month = Console.ReadLine();
+//while (month == "")
+//{
+//    month = CheckEmpty();
+//}
+
+//Console.WriteLine("Your name is: {0}", name);
+//Console.WriteLine("Your age is: {0}", age);
+//Console.WriteLine("Your birth month is: {0}", month);
+
+
+//        }
+
+//            static string CheckEmpty()
+//{
+//    Console.WriteLine("You did not type anything.");
+//    Console.WriteLine("Please answer the ques.");
+//    string ValueToReturn = Console.ReadLine();
+//    return (ValueToReturn);
+//    //or return Console.ReadLine();
+//}
+
+
+
+
 
 //8.--------------FOREACH LOOP------------------
 //var UseArray = new int[] { 1, 2, 3 };
