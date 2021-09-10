@@ -41,6 +41,34 @@ namespace ConsoleAppSnippetse
 // Use these lines of code. I commented them out here in order to store them.
 
 //10.------A FUNCTION THAT TAKES IN AND RETURNS A VALUE------------
+        static void Main(string[] args)
+        {
+            Console.WriteLine("What is your name?");
+            var name= ReturnValue();
+
+            Console.WriteLine("What is your age?");
+            var age = ReturnValue();
+
+            Console.WriteLine("What month were you born in?");
+            var month = ReturnValue();
+
+            Console.WriteLine("Your name is: {0} \n", name);
+            Console.WriteLine("Your age is: {0} \n", age);
+            Console.WriteLine("Your birth month is: {0}", month);
+
+        }
+
+            static string ReturnValue()
+        { 
+            var Question = Console.ReadLine();
+            
+            while (Question == "")
+            {
+                Console.WriteLine("You inputed empty value.\nPlease, input another value.");
+                Question = Console.ReadLine();
+            }
+            return (Question);
+        }
 
 
 //9.--------------A FUNCTION THAT RETURNS A VALUE------------------
