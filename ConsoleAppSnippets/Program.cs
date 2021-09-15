@@ -1,75 +1,189 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 
-namespace ConsoleAppSnippetse
+namespace ConsoleAppSnippets
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("What is your name?");
-            var name= ReturnValue();
+            var students = new List<Students>();
+            var YesNo = true;
 
-            Console.WriteLine("What is your age?");
-            var age = ReturnValue();
-
-            Console.WriteLine("What month were you born in?");
-            var month = ReturnValue();
-
-            Console.WriteLine("Your name is: {0} \n", name);
-            Console.WriteLine("Your age is: {0} \n", age);
-            Console.WriteLine("Your birth month is: {0}", month);
-
-        }
-
-            static string ReturnValue()
-        { 
-            var Question = Console.ReadLine();
-            
-            while (Question == "")
+            while (YesNo)
             {
-                Console.WriteLine("You inputed empty value.\nPlease, input another value.");
-                Question = Console.ReadLine();
+                var newStudent = new Students();
+                Console.Write("Name:");
+                newStudent.Name = Console.ReadLine();
+
+                Console.Write("Grade:");
+                newStudent.Grade = int.Parse(Console.ReadLine());
+
+
+
+                students.Add(newStudent);
+
+                Console.WriteLine("Add another student? y/n");
+
+                if (Console.ReadLine() != "y")
+                    YesNo = false;
+
             }
-            return (Question);
+
+            foreach (var student in students)
+            {
+                Console.WriteLine("Name: {0} \n Grade: {1} \n\n", student.Name, student.Grade);
+            }
+
         }
+    }
+
+    class Students
+    {
+        public string Name;
+        public int Grade;
+        public string Birthday;
+        public int Age;
+        private int phone;
 
 
-
+        public void setGrade(int number)
+        {
+            phone = number;
+        }
     }
 }
 
 // Use these lines of code. I commented them out here in order to store them.
+//13. --------Implementing OOP. Creating and using objects-----------
+//    static void Main(string[] args)
+//    {
+//        var students = new List<Students>();
+//        var YesNo = true;
+
+//        while (YesNo)
+//        {
+//            var newStudent = new Students();
+//            Console.Write("Name:");
+//            newStudent.Name = Console.ReadLine();
+
+//            Console.Write("Grade:");
+//            newStudent.Grade = int.Parse(Console.ReadLine());
+
+//            students.Add(newStudent);
+
+//            Console.WriteLine("Add another student? y/n");
+
+//            if (Console.ReadLine() != "y")
+//                YesNo = false;               
+
+//        }
+
+//        foreach (var student in students)
+//        {
+//            Console.WriteLine("Name: {0} \n Grade: {1} \n\n", student.Name, student.Grade);
+//        }
+
+//    }
+//}
+
+//class Students
+//{
+//    public string Name;
+//    public int Grade;
+//    public string Birthday;
+//    public int Age;
+//    public int Phone;
+//}
+
+
+
+//12. ------Implementing Collections------------
+//var StudentNames = new List<string>();
+//var StudentScores = new List<int>();
+
+//var YesNo = true;
+
+//while (YesNo)
+//{
+//    Console.WriteLine("Type the student's name:");
+//    StudentNames.Add(Console.ReadLine());
+
+//    Console.WriteLine("Type the student's score:");
+//    StudentScores.Add(int.Parse(Console.ReadLine()));
+
+//    Console.WriteLine("Do you want to input another student's details y or n?");
+//    var CheckYesNo = Console.ReadLine();
+
+//    if (CheckYesNo != "y")
+//    {
+//        YesNo = false;
+//    }
+
+//}
+//for(var i =0; i<StudentNames.Count; i++)
+//{
+//    Console.WriteLine(i+1 + "." + "{0} scores {1}",StudentNames[i],StudentScores[i]);
+//}
+
+
+//11.-----------SWITCH STATEMENT---------------
+//  Console.WriteLine("Enter years of experience.");
+//var Experience = Console.ReadLine();
+
+//switch (int.Parse(Experience))
+//{
+//    case 0:
+//        Console.WriteLine("Inexperinced");
+//        break;
+
+//    case 1:
+//        Console.WriteLine("Junior");
+//        break;
+
+//    case 2:
+//        Console.WriteLine("Intermediate");
+//        break;
+
+//    case 3:
+//        Console.WriteLine("Advanced");
+//        break;
+
+//    default:
+//        Console.WriteLine("Senior");
+//        break;
+//}
+
 
 //10.------A FUNCTION THAT TAKES IN AND RETURNS A VALUE------------
-        static void Main(string[] args)
-        {
-            Console.WriteLine("What is your name?");
-            var name= ReturnValue();
+//static void Main(string[] args)
+//{
+//    Console.WriteLine("What is your name?");
+//    var name = ReturnValue();
 
-            Console.WriteLine("What is your age?");
-            var age = ReturnValue();
+//    Console.WriteLine("What is your age?");
+//    var age = ReturnValue();
 
-            Console.WriteLine("What month were you born in?");
-            var month = ReturnValue();
+//    Console.WriteLine("What month were you born in?");
+//    var month = ReturnValue();
 
-            Console.WriteLine("Your name is: {0} \n", name);
-            Console.WriteLine("Your age is: {0} \n", age);
-            Console.WriteLine("Your birth month is: {0}", month);
+//    Console.WriteLine("Your name is: {0} \n", name);
+//    Console.WriteLine("Your age is: {0} \n", age);
+//    Console.WriteLine("Your birth month is: {0}", month);
 
-        }
+//}
 
-            static string ReturnValue()
-        { 
-            var Question = Console.ReadLine();
-            
-            while (Question == "")
-            {
-                Console.WriteLine("You inputed empty value.\nPlease, input another value.");
-                Question = Console.ReadLine();
-            }
-            return (Question);
-        }
+//static string ReturnValue()
+//{
+//    var Question = Console.ReadLine();
 
+//    while (Question == "")
+//    {
+//        Console.WriteLine("You inputed empty value.\nPlease, input another value.");
+//        Question = Console.ReadLine();
+//    }
+//    return (Question);
+//}
 
 //9.--------------A FUNCTION THAT RETURNS A VALUE------------------
 //Console.WriteLine("What is your name?");
@@ -226,4 +340,19 @@ namespace ConsoleAppSnippetse
 //var z = Convert.ToInt32(x) * Convert.ToInt32(y);
 //Console.WriteLine("The result of multiplying {0} by {1} is {2}", x, y, z);
 
+
+//0. ----------Console App format----------------------------------------
+//namespace ConsoleAppSnippets
+//{
+//    class Program
+//    {
+//        static void Main(string[] args)
+//        {
+
+//        }
+
+//    }
+
+
+//}
 
