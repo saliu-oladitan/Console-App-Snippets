@@ -7,21 +7,44 @@ namespace ConsoleAppSnippets
     {
         static void Main(string[] args)
         {
+            Import();
             var students = new List<Students>();
             var YesNo = true;
-
+            
             while (YesNo)
             {
                 var newStudent = new Students();
-                Console.Write("Name:");
-                newStudent.Name = Console.ReadLine();
+                
+                try
+                {
+                    newStudent.Name = Util.Console.Ask("Name:");
+                    newStudent.Grade = Util.Console.AskInt("Age:");
+                    newStudent.Phone = Util.Console.AskInt("Grade:");
+                }
 
-                Console.Write("Grade:");
-                newStudent.Grade = int.Parse(Console.ReadLine());
+                catch (FormatException msg)
+                {
+                    Console.WriteLine(msg.Message);
+                }
+                
+                catch (Exception)
+                {
+                    Console.WriteLine("Error.");
+                }
 
 
+
+                //var TryNow = int.TryParse(Util.Console.Ask("Age:"), out newStudent.Grade);
+                //while (!TryNow)
+                //{
+                //    Console.WriteLine("Wrong letter input");
+                //    TryNow = int.TryParse(Util.Console.Ask("Age:"), out newStudent.Grade);
+                //}
 
                 students.Add(newStudent);
+                Students.Count++;
+                Console.WriteLine(Students.Count);
+                
 
                 Console.WriteLine("Add another student? y/n");
 
@@ -32,29 +55,376 @@ namespace ConsoleAppSnippets
 
             foreach (var student in students)
             {
-                Console.WriteLine("Name: {0} \n Grade: {1} \n\n", student.Name, student.Grade);
+                Console.WriteLine("Name: {0} \n Grade: {1} \n\n",student.Name, student.Grade);
             }
 
         }
+
+        static void Import()
+        {
+            var newImputedStudent = new Students("Saliu", 34, "birth", 23, 443545);
+
+            Console.WriteLine(newImputedStudent.Name);
+        }
     }
 
-    class Students
+    class Member
     {
         public string Name;
-        public int Grade;
         public string Birthday;
         public int Age;
-        private int phone;
+        protected int phone;
 
-
-        public void setGrade(int number)
+        public int Phone
         {
-            phone = number;
+            set { phone = value; }
         }
+
+    }
+    class Students : Member
+    {
+        static public int Count = 0;
+
+        public int Grade;
+
+
+        public Students()     // This one is called when the object of that class is initialised.
+        {
+            Console.WriteLine("This is the constructor");
+        }
+
+        public Students(string name, int grade, string birthday, int age, int phone)
+        {
+            Name = name;
+            Grade = grade;
+            Birthday = birthday;
+            Age = age;
+            Phone = phone;
+        }
+
+
+    }
+
+    class Teacher : Member
+    {
+        private string Subject;
     }
 }
 
 // Use these lines of code. I commented them out here in order to store them.
+
+//17. -------Inheritance------------------
+//class Program
+//{
+//    static void Main(string[] args)
+//    {
+//        Import();
+//        var students = new List<Students>();
+//        var YesNo = true;
+
+//        while (YesNo)
+//        {
+//            var newStudent = new Students();
+
+
+//            newStudent.Name = Util.Console.Ask("Name:");
+//            newStudent.Grade = int.Parse(Util.Console.Ask("Age:"));
+//            newStudent.Phone = int.Parse(Util.Console.Ask("Grade:"));
+
+
+//            students.Add(newStudent);
+//            Students.Count++;
+//            Console.WriteLine(Students.Count);
+
+
+//            Console.WriteLine("Add another student? y/n");
+
+//            if (Console.ReadLine() != "y")
+//                YesNo = false;
+
+//        }
+
+//        foreach (var student in students)
+//        {
+//            Console.WriteLine("Name: {0} \n Grade: {1} \n\n", student.Name, student.Grade);
+//        }
+
+//    }
+
+//    static void Import()
+//    {
+//        var newImputedStudent = new Students("Saliu", 34, "birth", 23, 443545);
+
+//        Console.WriteLine(newImputedStudent.Name);
+//    }
+//}
+
+//class Member
+//{
+//    public string Name;
+//    public string Birthday;
+//    public int Age;
+//    protected int phone;
+
+//    public int Phone
+//    {
+//        set { phone = value; }
+//    }
+
+//}
+//class Students : Member
+//{
+//    static public int Count = 0;
+
+//    public int Grade;
+
+
+//    public Students()     // This one is called when the object of that class is initialised.
+//    {
+//        Console.WriteLine("This is the constructor");
+//    }
+
+//    public Students(string name, int grade, string birthday, int age, int phone)
+//    {
+//        Name = name;
+//        Grade = grade;
+//        Birthday = birthday;
+//        Age = age;
+//        Phone = phone;
+//    }
+
+
+//}
+
+//class Teacher : Member
+//{
+//    private string Subject;
+//}
+
+//16. --------Using constructor---------------
+//class Program
+//{
+//    static void Main(string[] args)
+//    {
+//        Import();
+//        var students = new List<Students>();
+//        var YesNo = true;
+
+//        while (YesNo)
+//        {
+//            var newStudent = new Students();
+
+
+//            newStudent.Name = Util.Console.Ask("Name:");
+//            newStudent.Grade = int.Parse(Util.Console.Ask("Age:"));
+//            newStudent.Phone = int.Parse(Util.Console.Ask("Grade:"));
+
+
+//            students.Add(newStudent);
+//            Students.Count++;
+//            Console.WriteLine(Students.Count);
+
+
+//            Console.WriteLine("Add another student? y/n");
+
+//            if (Console.ReadLine() != "y")
+//                YesNo = false;
+
+//        }
+
+//        foreach (var student in students)
+//        {
+//            Console.WriteLine("Name: {0} \n Grade: {1} \n\n", student.Name, student.Grade);
+//        }
+
+//    }
+
+//    static void Import()
+//    {
+//        var newImputedStudent = new Students("Saliu", 34, "birth", 23, 443545);
+
+//        Console.WriteLine(newImputedStudent.Name);
+//    }
+//}
+
+//class Students
+//{
+//    static public int Count = 0;
+//    public string Name;
+//    public int Grade;
+//    public string Birthday;
+//    public int Age;
+//    private int phone;
+
+//    public Students()     // This one is called when the object of that class is initialised.
+//    {
+//        Console.WriteLine("This is the constructor");
+//    }
+
+//    public Students(string name, int grade, string birthday, int age, int phone)
+//    {
+//        Name = name;
+//        Grade = grade;
+//        Birthday = birthday;
+//        Age = age;
+//        Phone = phone;
+//    }
+
+
+
+
+//    public int Phone
+//    {
+//        set { phone = value; /*Console.WriteLine(phone);*/ }
+//    }
+
+//    //public void setPhone(int number)
+//    //{
+//    //    phone = number;
+//    //}
+//}
+
+//15. ----- (Working with namespaces) Create another class with the name Util and use it in the initial class program..........
+
+//------This is The new class code--------------
+//namespace Util
+//{
+//    class Console
+//    {
+//        static public string Ask(string question)
+//        {
+//            System.Console.Write(question);
+//            return System.Console.ReadLine();
+//        }
+//    }
+//}
+
+//-----This is the intial class program code-----
+//namespace ConsoleAppSnippets
+//{
+//    class Program
+//    {
+//        static void Main(string[] args)
+//        {
+//            var students = new List<Students>();
+//            var YesNo = true;
+
+//            while (YesNo)
+//            {
+//                var newStudent = new Students();
+
+
+//                newStudent.Name = Util.Console.Ask("Name:");
+//                newStudent.Grade = int.Parse(Util.Console.Ask("Age:"));
+//                newStudent.Phone = int.Parse(Util.Console.Ask("Grade:"));
+
+
+//                students.Add(newStudent);
+//                Students.Count++;
+//                Console.WriteLine(Students.Count);
+
+
+//                Console.WriteLine("Add another student? y/n");
+
+//                if (Console.ReadLine() != "y")
+//                    YesNo = false;
+
+//            }
+
+//            foreach (var student in students)
+//            {
+//                Console.WriteLine("Name: {0} \n Grade: {1} \n\n", student.Name, student.Grade);
+//            }
+
+//        }
+//    }
+
+//    class Students
+//    {
+//        static public int Count = 0;
+//        public string Name;
+//        public int Grade;
+//        public string Birthday;
+//        public int Age;
+//        private int phone;
+
+//        public int Phone
+//        {
+//            set { phone = value; }
+//        }
+
+//    }
+//}
+
+
+//14. --------Working with static members-----------
+
+
+//14. --------Dealing with properties-----------
+//class Program
+//{
+//    static void Main(string[] args)
+//    {
+//        var students = new List<Students>();
+//        var YesNo = true;
+//        int newCount = 0;
+//        while (YesNo)
+//        {
+//            var newStudent = new Students();
+//            Console.Write("Name:");
+//            newStudent.Name = Console.ReadLine();
+
+//            Console.Write("Grade:");
+//            newStudent.Grade = int.Parse(Console.ReadLine());
+
+//            Console.Write("Phone:");
+//            newStudent.PhoneProp = int.Parse(Console.ReadLine());
+//            //newStudent.setPhone(int.Parse(Console.ReadLine()));
+
+//            newCount++;
+//            newStudent.Counting = newCount;
+
+//            students.Add(newStudent);
+//            Console.WriteLine("Count = {0}", newCount);
+
+
+//            Console.WriteLine("Add another student? y/n");
+
+//            if (Console.ReadLine() != "y")
+//                YesNo = false;
+
+//        }
+
+//        foreach (var student in students)
+//        {
+//            Console.WriteLine("Count: {0} \n Name: {1} \n Grade: {2} \n\n", student.Counting, student.Name, student.Grade);
+//        }
+
+//    }
+//}
+
+//class Students
+//{
+//    public int Counting = 0;
+//    public string Name;
+//    public int Grade;
+//    public string Birthday;
+//    public int Age;
+//    private int phone;
+
+//    public int PhoneProp
+//    {
+//        set { phone = value; /*Console.WriteLine(phone);*/ }
+//    }
+
+//    //public void setPhone(int number)
+//    //{
+//    //    phone = number;
+//    //}
+//}
+
+
+
 //13. --------Implementing OOP. Creating and using objects-----------
 //    static void Main(string[] args)
 //    {
@@ -355,4 +725,3 @@ namespace ConsoleAppSnippets
 
 
 //}
-
