@@ -3,12 +3,19 @@ using System.Collections.Generic;
 
 namespace ConsoleAppSnippets
 {
+    enum SchoolType  // enum has inherent numbering
+    {
+        Light = 0,
+        Shine = 1,
+        Top = 2,
+    }
     class Program
     {
+        static List<Students> students = new List<Students>();   // We moved it here so that we will be able to access it anywhere in the class and it is no more a local list. We will specify the type explicitly (not var anymore) and add static since we need to access it in static functions
         static void Main(string[] args)
         {
             Import();
-            var students = new List<Students>();
+            
             var YesNo = true;
             
             while (YesNo)
@@ -19,6 +26,7 @@ namespace ConsoleAppSnippets
                 {
                     newStudent.Name = Util.Console.Ask("Name:");
                     newStudent.Grade = Util.Console.AskInt("Age:");
+                    newStudent.School = (SchoolType) Util.Console.AskInt("Note: \n Light: 0 \n Shine: 1 \n Top: 2 \n School Id:"); //We will use cast and specify the type we want to cast to. THis is to convert the input value into the enum type.
                     newStudent.Phone = Util.Console.AskInt("Grade:");
                 }
 
@@ -55,8 +63,10 @@ namespace ConsoleAppSnippets
 
             foreach (var student in students)
             {
-                Console.WriteLine("Name: {0} \n Grade: {1} \n\n",student.Name, student.Grade);
+                Console.WriteLine("Name: {0} \n Grade: {1} \n",student.Name, student.Grade);
             }
+
+            Exports();
 
         }
 
@@ -65,6 +75,28 @@ namespace ConsoleAppSnippets
             var newImputedStudent = new Students("Saliu", 34, "birth", 23, 443545);
 
             Console.WriteLine(newImputedStudent.Name);
+        }
+
+        static void Exports()
+        {
+            foreach (var student in students)
+            {
+                switch(student.School)
+                {
+                    case SchoolType.Light:
+                      Console.WriteLine("Light");
+                    break;
+
+                    case SchoolType.Shine:
+                        Console.WriteLine("Shine");
+                        break;
+
+                    case SchoolType.Top:
+                        Console.WriteLine("Top");
+                        break;
+
+                }    
+            }
         }
     }
 
@@ -86,6 +118,7 @@ namespace ConsoleAppSnippets
         static public int Count = 0;
 
         public int Grade;
+        public SchoolType School;
 
 
         public Students()     // This one is called when the object of that class is initialised.
@@ -112,6 +145,43 @@ namespace ConsoleAppSnippets
 }
 
 // Use these lines of code. I commented them out here in order to store them.
+//18. -------Error Handling------------------
+//A. INSIDE Console.cs
+//static public int AskInt(string question)
+//{
+
+
+//    try
+//    {
+//        System.Console.Write(question);
+//        return int.Parse(System.Console.ReadLine());
+//    }
+//    catch (Exception)
+//    {
+//        throw new FormatException("Input was not a number");
+//    }
+//}
+
+//B. INSIDE program.cs
+//var newStudent = new Students();
+
+//try
+//{
+//    newStudent.Name = Util.Console.Ask("Name:");
+//    newStudent.Grade = Util.Console.AskInt("Age:");
+//    newStudent.School = Util.Console.AskInt("Note: \n Light: 0 \n Shine: 1 \n Top: 2 \n School Id:");
+//    newStudent.Phone = Util.Console.AskInt("Grade:");
+//}
+
+//catch (FormatException msg)
+//{
+//    Console.WriteLine(msg.Message);
+//}
+
+//catch (Exception)
+//{
+//    Console.WriteLine("Error.");
+//}
 
 //17. -------Inheritance------------------
 //class Program
