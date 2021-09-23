@@ -3,148 +3,231 @@ using System.Collections.Generic;
 
 namespace ConsoleAppSnippets
 {
-    enum SchoolType  // enum has inherent numbering
-    {
-        Light = 0,
-        Shine = 1,
-        Top = 2,
-    }
+
     class Program
     {
-        static List<Students> students = new List<Students>();   // We moved it here so that we will be able to access it anywhere in the class and it is no more a local list. We will specify the type explicitly (not var anymore) and add static since we need to access it in static functions
+       
         static void Main(string[] args)
         {
-            Import();
-            
-            var YesNo = true;
-            
-            while (YesNo)
-            {
-                var newStudent = new Students();
-                
-                try
-                {
-                    newStudent.Name = Util.Console.Ask("Name:");
-                    newStudent.Grade = Util.Console.AskInt("Age:");
-                    newStudent.School = (SchoolType) Util.Console.AskInt("Note: \n Light: 0 \n Shine: 1 \n Top: 2 \n School Id:"); //We will use cast and specify the type we want to cast to. THis is to convert the input value into the enum type.
-                    newStudent.Phone = Util.Console.AskInt("Grade:");
-                }
+            var x = 2;
 
-                catch (FormatException msg)
-                {
-                    Console.WriteLine(msg.Message);
-                }
-                
-                catch (Exception)
-                {
-                    Console.WriteLine("Error.");
-                }
+            Console.WriteLine(x);
 
+            //Five(out x);
+            Double(ref x);
 
-
-                //var TryNow = int.TryParse(Util.Console.Ask("Age:"), out newStudent.Grade);
-                //while (!TryNow)
-                //{
-                //    Console.WriteLine("Wrong letter input");
-                //    TryNow = int.TryParse(Util.Console.Ask("Age:"), out newStudent.Grade);
-                //}
-
-                students.Add(newStudent);
-                Students.Count++;
-                Console.WriteLine(Students.Count);
-                
-
-                Console.WriteLine("Add another student? y/n");
-
-                if (Console.ReadLine() != "y")
-                    YesNo = false;
-
-            }
-
-            foreach (var student in students)
-            {
-                Console.WriteLine("Name: {0} \n Grade: {1} \n",student.Name, student.Grade);
-            }
-
-            Exports();
-
+            Console.WriteLine(x);
+           
         }
 
-        static void Import()
+        static void Five(out int a)
         {
-            var newImputedStudent = new Students("Saliu", 34, "birth", 23, 443545);
+            a= 5;
 
-            Console.WriteLine(newImputedStudent.Name);
+            Console.WriteLine(a);
         }
 
-        static void Exports()
+        static void Double(ref int a)
         {
-            foreach (var student in students)
-            {
-                switch(student.School)
-                {
-                    case SchoolType.Light:
-                      Console.WriteLine("Light");
-                    break;
+            a = a*2;
 
-                    case SchoolType.Shine:
-                        Console.WriteLine("Shine");
-                        break;
-
-                    case SchoolType.Top:
-                        Console.WriteLine("Top");
-                        break;
-
-                }    
-            }
-        }
-    }
-
-    class Member
-    {
-        public string Name;
-        public string Birthday;
-        public int Age;
-        protected int phone;
-
-        public int Phone
-        {
-            set { phone = value; }
+            Console.WriteLine(a);
         }
 
     }
-    class Students : Member
-    {
-        static public int Count = 0;
 
-        public int Grade;
-        public SchoolType School;
-
-
-        public Students()     // This one is called when the object of that class is initialised.
-        {
-            Console.WriteLine("This is the constructor");
-        }
-
-        public Students(string name, int grade, string birthday, int age, int phone)
-        {
-            Name = name;
-            Grade = grade;
-            Birthday = birthday;
-            Age = age;
-            Phone = phone;
-        }
-
-
-    }
-
-    class Teacher : Member
-    {
-        private string Subject;
-    }
+    
 }
 
 // Use these lines of code. I commented them out here in order to store them.
+//21. -------out and ref keywords----------------------------
+//static void Main(string[] args)
+//{
+//    var x = 2;
+
+//    Console.WriteLine(x);
+
+//    //Five(out x);
+//    Double(ref x);
+
+//    Console.WriteLine(x);
+
+//}
+
+//static void Five(out int a)
+//{
+//    a = 5;
+
+//    Console.WriteLine(a);
+//}
+
+//static void Double(ref int a)
+//{
+//    a = a * 2;
+
+//    Console.WriteLine(a);
+//}
+
+
+//20. -------Out Parameter----------------------------
+//static void Main(string[] args)
+//{
+//    var x = 2;
+
+//    Console.WriteLine(x);
+
+//    Five(out x);
+
+//    Console.WriteLine(x);
+
+//}
+
+//static void Five(out int x)
+//{
+//    x = 5;
+
+//    Console.WriteLine(x);
+//}
+//19. -------Enum----------------------------
+//enum SchoolType  // enum comes with index by default which starts at 0
+//{
+//    Light = 0,
+//    Shine = 1,
+//    Top = 2,
+//}
+//class Program
+//{
+//    static List<Students> students = new List<Students>();   // We moved it here so that we will be able to access it anywhere in the class and it is no more a local list. We will specify the type explicitly (not var anymore) and add static since we need to access it in static functions
+//    static void Main(string[] args)
+//    {
+//        Import();
+
+//        var YesNo = true;
+
+//        while (YesNo)
+//        {
+//            var newStudent = new Students();
+
+//            try
+//            {
+//                newStudent.Name = Util.Console.Ask("Name:");
+//                newStudent.Grade = Util.Console.AskInt("Age:");
+//                newStudent.School = (SchoolType) Util.Console.AskInt("Note: \n Light: 0 \n Shine: 1 \n Top: 2 \n School Id:"); //We will use cast and specify the type we want to cast to. THis is to convert the input value into the enum type.
+//                newStudent.Phone = Util.Console.AskInt("Grade:");
+//            }
+
+//            catch (FormatException msg)
+//            {
+//                Console.WriteLine(msg.Message);
+//            }
+
+//            catch (Exception)
+//            {
+//                Console.WriteLine("Error.");
+//            }
+
+
+
+//            //var TryNow = int.TryParse(Util.Console.Ask("Age:"), out newStudent.Grade);
+//            //while (!TryNow)
+//            //{
+//            //    Console.WriteLine("Wrong letter input");
+//            //    TryNow = int.TryParse(Util.Console.Ask("Age:"), out newStudent.Grade);
+//            //}
+
+//            students.Add(newStudent);
+//            Students.Count++;
+//            Console.WriteLine(Students.Count);
+
+
+//            Console.WriteLine("Add another student? y/n");
+
+//            if (Console.ReadLine() != "y")
+//                YesNo = false;
+
+//        }
+
+//        foreach (var student in students)
+//        {
+//            Console.WriteLine("Name: {0} \n Grade: {1} \n",student.Name, student.Grade);
+//        }
+
+//        Exports();
+
+//    }
+
+//    static void Import()
+//    {
+//        var newImputedStudent = new Students("Saliu", 34, "birth", 23, 443545);
+
+//        Console.WriteLine(newImputedStudent.Name);
+//    }
+
+//    static void Exports()
+//    {
+//        foreach (var student in students)
+//        {
+//            switch(student.School)
+//            {
+//                case SchoolType.Light:
+//                  Console.WriteLine("Expoting to Light");
+//                break;
+
+//                case SchoolType.Shine:
+//                    Console.WriteLine("Exporting to Shine");
+//                    break;
+
+//                case SchoolType.Top:
+//                    Console.WriteLine("Exporting to Top");
+//                    break;
+
+//            }    
+//        }
+//    }
+//}
+
+//class Member
+//{
+//    public string Name;
+//    public string Birthday;
+//    public int Age;
+//    protected int phone;
+
+//    public int Phone
+//    {
+//        set { phone = value; }
+//    }
+
+//}
+//class Students : Member
+//{
+//    static public int Count = 0;
+
+//    public int Grade;
+//    public SchoolType School;
+
+
+//    public Students()     // This one is called when the object of that class is initialised.
+//    {
+//        Console.WriteLine("This is the constructor");
+//    }
+
+//    public Students(string name, int grade, string birthday, int age, int phone)
+//    {
+//        Name = name;
+//        Grade = grade;
+//        Birthday = birthday;
+//        Age = age;
+//        Phone = phone;
+//    }
+
+
+//}
+
+//class Teacher : Member
+//{
+//    private string Subject;
+//}
 //18. -------Error Handling------------------
 //A. INSIDE Console.cs
 //static public int AskInt(string question)
